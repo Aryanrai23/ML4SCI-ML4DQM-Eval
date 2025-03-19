@@ -43,3 +43,4 @@ for epoch in range(num_epochs):
 # Save the Model
 torch.save(model.state_dict(), "models/vit_model.pth")
 print("Model training complete. Saved as vit_model.pth")
+#..
