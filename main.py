@@ -27,7 +27,7 @@ test_loader = DataLoader(test_dataset, batch_size=8, shuffle=False)
 # Visualize a few samples from the dataset
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
-plt.imshow(X_train[0].permute(1, 2, 0).numpy())  # Ensure correct channel format
+plt.imshow(X_train[0].permute(1, 2, 0).numpy())  # Ensure the correct channel format
 plt.title("Sample Training Image")
 
 plt.subplot(1, 2, 2)
