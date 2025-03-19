@@ -12,4 +12,4 @@ class CustomViT(nn.Module):
     def forward(self, x):
         return self.vit(x).logits
 
-model = CustomViT(num_labels=2)  # Define model instance
+model = CustomViT(num_labels=2)  # Define the model instances

@@ -37,7 +37,7 @@ for epoch in range(num_epochs):
         if batch_idx % 10 == 0:
             print(f"Epoch [{epoch+1}/{num_epochs}], Batch [{batch_idx+1}/{len(train_loader)}], Loss: {loss.item():.4f}")
 
-    # Print average loss for the epoch
+    # Print average loss for the epoch.
     print(f"Epoch [{epoch+1}/{num_epochs}] completed. Avg Loss: {running_loss / len(train_loader):.4f}")
 
 # Save the Model
