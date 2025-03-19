@@ -7,7 +7,7 @@ from torch.utils.data import TensorDataset, DataLoader
 def load_preprocessed_data():
     """ Load preprocessed tensor data from HDF5 file """
     with h5py.File("data/preprocessed_data.h5", "r") as f:
-        X_train = torch.tensor(f["X_train"][:], dtype=torch.float32) / 255.0  # Normalize
+        X_train = torch.tensor(f["X_train"][:], dtype=torch.float32) / 255.0  # Normalize.
         X_test = torch.tensor(f["X_test"][:], dtype=torch.float32) / 255.0
         y_train = torch.tensor(f["y_train"][:], dtype=torch.long)
         y_test = torch.tensor(f["y_test"][:], dtype=torch.long)
