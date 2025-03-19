@@ -40,6 +40,6 @@ for epoch in range(num_epochs):
     # Print average loss for the epoch
     print(f"Epoch [{epoch+1}/{num_epochs}] completed. Avg Loss: {running_loss / len(train_loader):.4f}")
 
-# Save Model
+# Save the Model
 torch.save(model.state_dict(), "models/vit_model.pth")
 print("Model training complete. Saved as vit_model.pth")
