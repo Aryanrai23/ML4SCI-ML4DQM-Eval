@@ -29,7 +29,7 @@ def load_data():
     print(f"Dataset loaded: {X.shape[0]} samples, {X.shape[1:]} shape")
     return X, y
 
-# Normalize Features (Min-Max Scaling)
+# Normalize the Features (Min-Max Scaling)
 def normalize_data(X):
     """ Apply Min-Max normalization. """
     scaler = MinMaxScaler()
