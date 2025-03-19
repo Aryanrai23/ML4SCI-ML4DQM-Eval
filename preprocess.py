@@ -1,10 +1,23 @@
 import numpy as np
 import h5py
-from main import load_data  # Import dataset loading function from main.py
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import SMOTE
 import torchvision.transforms as transforms
+
+# Load the dataset
+def load_data():
+    """ Load the dataset from .npy files. """
+    print("Loading dataset...")
+    data_1 = np.load("/home/aryan/Desktop/ML4SCI-ML4DQM-Eval/data/Run355456_Dataset_jqkne.npy")
+    data_2 = np.load("/home/aryan/Desktop/ML4SCI-ML4DQM-Eval/data/Run357479_Dataset_iodic.npy")
+    labels_1 = np.zeros(len(data_1))
+    labels_2 = np.ones(len(data_2))
+
+    X = np.vstack([data_1, data_2])
+    y = np.hstack([labels_1, labels_2])
+
+    print(f"Dataset loaded: {X.shape[0]} samples, {X.shape[1:]} shape")
+    return X, y
 
 # Handle Zero-Padded Entries
 def mask_zero_entries(X):
@@ -27,14 +40,6 @@ data_transforms = transforms.Compose([
     transforms.RandomResizedCrop(size=(64, 72), scale=(0.8, 1.0))
 ])
 
-# Handle Class Imbalance (SMOTE)
-def balance_data(X, y):
-    """ Handle class imbalance using SMOTE. """
-    X_flat = X.reshape(X.shape[0], -1)
-    smote = SMOTE(random_state=42)
-    X_resampled, y_resampled = smote.fit_resample(X_flat, y)
-    return X_resampled.reshape(-1, 64, 72), y_resampled
-
 # Train-Test Split
 def split_data(X, y):
     """ Split into 80% training and 20% testing. """
@@ -51,17 +56,14 @@ def save_data(X_train, X_test, y_train, y_test):
 
 # Run all preprocessing steps
 def preprocess_and_save():
-    print("Loading dataset from main.py...")
-    X, y = load_data()  # Use the dataset loading function from main.py
+    print("Loading dataset...")
+    X, y = load_data()
 
     print("Handling zero-padded entries...")
     X = mask_zero_entries(X)
 
     print("Normalizing data...")
     X = normalize_data(X)
-
-    print("Balancing data using SMOTE...")
-    X, y = balance_data(X, y)
 
     print("Splitting into train and test sets...")
     X_train, X_test, y_train, y_test = split_data(X, y)
