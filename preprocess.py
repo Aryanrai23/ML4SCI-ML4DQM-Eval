@@ -13,7 +13,7 @@ transform = transforms.Compose([
     transforms.ToTensor()            # Convert to PyTorch tensor
 ])
 
-# Load the dataset
+# Load the dataset.
 def load_data():
     """ Load the dataset from .npy files. """
     print("Loading dataset...")
